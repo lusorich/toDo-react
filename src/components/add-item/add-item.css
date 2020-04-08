@@ -1,0 +1,12 @@
+.add-wrapper {
+    margin: 20px auto;
+    padding: 0 20px;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fa-plus-circle:active {
+    color: blue;
+}

@@ -1,0 +1,18 @@
+.btn-active {
+    color: red;
+    border: 1px solid black;
+}
+
+.btn-done {
+    color: green;
+    border: 1px solid black;
+}
+
+.btn-all {
+    border: 1px solid black;
+}
+
+.btn:focus {
+    outline: 1px auto black;
+    box-shadow: none;
+}

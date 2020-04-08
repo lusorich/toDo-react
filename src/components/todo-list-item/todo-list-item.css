@@ -1,0 +1,13 @@
+.done {
+  text-decoration: line-through;
+}
+
+.todo-list-item button {
+  width: 30px;
+  margin-left: 3px;
+}
+
+.todo-list-item.important {
+    font-weight: bold;
+    color: blue;
+}
