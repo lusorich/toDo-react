@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import AppHeader from "../app-header";
-import SearchPanel from "../search-panel";
-import ToDoList from "../todo-list";
-import ItemStatusFilter from "../item-status-filter";
-import AddItem from "../add-item";
+import AppHeader from '../app-header';
+import SearchPanel from '../search-panel';
+import ToDoList from '../todo-list';
+import ItemStatusFilter from '../item-status-filter';
+import AddItem from '../add-item';
 
-import "./app.css";
+import './app.css';
 
 class App extends Component {
   maxId = 100;
@@ -17,17 +17,17 @@ class App extends Component {
 
   state = {
     todoData: [
-      this.createTodoItem("drink vodka"),
-      this.createTodoItem("make app"),
-      this.createTodoItem("eat")
+      this.createTodoItem('drink water'),
+      this.createTodoItem('make app'),
+      this.createTodoItem('eat'),
     ],
-    searchStr: "",
-    filter: ""
+    searchStr: '',
+    filter: '',
   };
 
-  deleteItem = id => {
+  deleteItem = (id) => {
     this.setState(({ todoData }) => {
-      const idx = todoData.findIndex(el => el.id === id);
+      const idx = todoData.findIndex((el) => el.id === id);
 
       const before = todoData.slice(0, idx);
       const after = todoData.slice(idx + 1);
@@ -35,51 +35,51 @@ class App extends Component {
       const newArray = [...before, ...after];
 
       return {
-        todoData: newArray
+        todoData: newArray,
       };
     });
   };
 
-  addItem = text => {
+  addItem = (text) => {
     this.setState(({ todoData }) => {
       const newItem = this.createTodoItem(text);
       const newArray = [...todoData, newItem];
 
       return {
-        todoData: newArray
+        todoData: newArray,
       };
     });
   };
 
   toggleProperty = (arr, id, propName) => {
-    const idx = arr.findIndex(el => el.id === id);
+    const idx = arr.findIndex((el) => el.id === id);
 
     const newItem = { ...arr[idx], [propName]: !arr[idx][propName] };
 
     return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
   };
 
-  onToggleImportant = id => {
+  onToggleImportant = (id) => {
     this.setState(({ todoData }) => {
       return {
-        todoData: this.toggleProperty(todoData, id, "important")
+        todoData: this.toggleProperty(todoData, id, 'important'),
       };
     });
   };
 
-  onToggleDone = id => {
+  onToggleDone = (id) => {
     this.setState(({ todoData }) => {
       return {
-        todoData: this.toggleProperty(todoData, id, "done")
+        todoData: this.toggleProperty(todoData, id, 'done'),
       };
     });
   };
 
-  onSearchChange = searchStr => {
+  onSearchChange = (searchStr) => {
     this.setState({ searchStr });
   };
 
-  onFilterChange = filter => {
+  onFilterChange = (filter) => {
     this.setState({ filter });
   };
 
@@ -88,19 +88,19 @@ class App extends Component {
       return items;
     }
 
-    return items.filter(item => {
+    return items.filter((item) => {
       return item.label.toLowerCase().indexOf(searchStr.toLowerCase()) > -1;
     });
   };
 
   filter = (items, filter) => {
     switch (filter) {
-      case "all":
+      case 'all':
         return items;
-      case "active":
-        return items.filter(item => !item.done);
-      case "done":
-        return items.filter(item => item.done);
+      case 'active':
+        return items.filter((item) => !item.done);
+      case 'done':
+        return items.filter((item) => item.done);
       default:
         return items;
     }
@@ -110,13 +110,13 @@ class App extends Component {
     const { todoData, searchStr, filter } = this.state;
     const visibleItems = this.filter(this.search(todoData, searchStr), filter);
 
-    const doneCount = todoData.filter(el => el.done).length;
+    const doneCount = todoData.filter((el) => el.done).length;
     const todoCount = todoData.length - doneCount;
 
     return (
       <div>
         <AppHeader toDo={todoCount} done={doneCount} />
-        <div className="top-panel d-flex">
+        <div className='top-panel d-flex'>
           <SearchPanel
             searchItem={this.searchItem}
             onSearchChange={this.onSearchChange}
